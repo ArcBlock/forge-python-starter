@@ -9,14 +9,16 @@ build:
 init: install dep
 	@echo "Initializing the repo..."
 
-travis-init:
+travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
 
 install:
 	@echo "Install software required for this repo..."
+	@npm install -g yarn
 
 dep:
 	@echo "Install dependencies required for this repo..."
+	@yarn
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
@@ -31,6 +33,7 @@ test:
 
 lint:
 	@echo "Linting the software..."
+	@yarn lint
 
 doc:
 	@echo "Building the documenation..."
@@ -39,19 +42,15 @@ precommit: dep lint doc build test
 
 travis: precommit
 
-travis-deploy: release
+travis-deploy:
 	@echo "Deploy the software by travis"
 
 clean:
 	@echo "Cleaning the build..."
 
-watch:
-	@make build
-	@echo "Watching templates and slides changes..."
-	@fswatch -o src/ | xargs -n1 -I{} make build
-
 run:
 	@echo "Running the software..."
+	@yarn start
 
 include .makefiles/*.mk
 
