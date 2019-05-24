@@ -19,7 +19,7 @@
     "lambda:netlify": "netlify-lambda build server/functions",
     "lambda:serve": "netlify-lambda serve server/functions",
     "netlify": "npm run clean && npm run export && npm run lambda:netlify",
-    "start": "nodemon app.js -w server -w app.js"
+    "start": "export $(cat .env | xargs) && python3 server/app.py"
   },
   "lint-staged": {
     "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
