@@ -2,15 +2,14 @@ from os import environ
 
 MONGO_URI = environ.get(
     'MONGO_URI') or 'mongodb://127.0.0.1:27017/forge-python-starter'
+# Let's just use the local mongod instance. Edit as needed.
 
 
-# URL_PREFIX = '/api/did'
-
-RESOURCE_METHODS = ['GET', 'POST']
+RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 
 # Enable reads (GET), edits (PATCH), replacements (PUT) and deletes of
 # individual items  (defaults to read-only item access).
-ITEM_METHODS = ['GET', 'DELETE']
+ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
 token = {
     'item_title': 'token',
@@ -23,20 +22,11 @@ token = {
     'resource_methods': ['GET', 'POST'],
 
     'schema': {
-        'token': {
-            'type': 'string',
-        },
-        'status': {
-            'type': 'string',
-        },
         'did': {
             'type': 'string',
             'unique': True,
-        },
-        'sessionToken': {
-            'type': 'string',
-        },
+        }
     }
 }
 
-DOMAIN = {'people': {}}
+DOMAIN = {'people': {}, 'token':token}

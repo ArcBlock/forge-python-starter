@@ -2,9 +2,8 @@
 require('dotenv').config();
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-const camelcase = require('camelcase');
 const { fromJSON } = require('@arcblock/forge-wallet');
-const { wallet, client, authenticator } = require('../server/libs/auth');
+const { wallet, client } = require('../api/libs/auth');
 
 const appWallet = fromJSON(wallet);
 
@@ -13,12 +12,13 @@ const appWallet = fromJSON(wallet);
     const res = await client.sendDeclareTx({
       tx: {
         itx: {
-          moniker: camelcase(authenticator.appInfo.name),
+          moniker: 'Arcblock',
         },
       },
       wallet: appWallet,
     });
 
+    console.log('Application wallet declared', wallet);
     console.log('Application wallet declared', res);
     process.exit(0);
   } catch (err) {
