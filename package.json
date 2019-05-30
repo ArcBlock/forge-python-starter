@@ -73,7 +73,8 @@
     "build:client": "react-scripts build",
     "build:server": "netlify-lambda build api/functions",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server:python": "export $(cat .env | xargs) && python3 server/app.py"
   },
   "eslintConfig": {
     "extends": "react-app"

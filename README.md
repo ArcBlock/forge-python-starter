@@ -1,6 +1,24 @@
-# Forge React Starter
+# Forge Python Starter
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e0c63e91-97b5-45df-95d1-1bad86153559/deploy-status)](https://app.netlify.com/sites/forge-react-starter/deploys)
+## Usage
+
+Start client on port 3000
+
+```bash
+yarn start:client
+```
+
+Start python server on 5000
+
+```bash
+yarn server:python
+```
+
+Start python server on 5000 with debug mode
+
+```bash
+FLASK_ENV=development yarn server:python
+```
 
 > Brings tons of thousands react libraries/components to dApps that run on [forge](https://www.arcblock.io/en/forge-sdk) powered blockchain.
 
@@ -58,8 +76,6 @@ Other javascript project goodies:
 - Mongodb v3+
 - Node.js v10+
 - That's all
-
-## Usage
 
 ### Create new project with forge-cli
 
