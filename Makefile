@@ -9,14 +9,12 @@ build:
 init: install dep
 	@echo "Initializing the repo..."
 
-
 travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
 
 install:
 	@echo "Install software required for this repo..."
 	@npm install -g yarn
-	@pip3 install eve
 
 dep:
 	@echo "Install dependencies required for this repo..."

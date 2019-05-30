@@ -21,7 +21,7 @@ const debug = require('debug')(name);
 
 const defaults = {
   appName: 'Forge React Starter',
-  appDescription: 'React starter application that runs on forge powered chain',
+  appDescription: 'Starter dApp built on react that runs on forge powered blockchain',
   appPort: 3030,
   mongoUri: 'mongodb://127.0.0.1:27017/forge-react-starter',
 };
@@ -30,30 +30,30 @@ const questions = [
   {
     type: 'text',
     name: 'appName',
-    message: 'Application name:',
+    message: 'dApp name:',
     default: defaults.appName,
     validate: input => {
-      if (!input) return 'Application name should not be empty';
+      if (!input) return 'dApp name should not be empty';
       return true;
     },
   },
   {
     type: 'text',
     name: 'appDescription',
-    message: 'Application description:',
+    message: 'dApp description:',
     default: defaults.appDescription,
     validate: input => {
-      if (!input) return 'Application descripiton should not be empty';
+      if (!input) return 'dApp description should not be empty';
       return true;
     },
   },
   {
     type: 'text',
     name: 'appPort',
-    message: 'Application listening port:',
+    message: 'dApp listening port:',
     default: defaults.appPort,
     validate: input => {
-      if (!input) return 'Application listening port should not be empty';
+      if (!input) return 'dApp listening port should not be empty';
       return true;
     },
   },
@@ -106,7 +106,7 @@ module.exports = {
    * @variable
    * @public
    */
-  blacklist: [__filename],
+  blacklist: ['starter.config.js', 'Makefile', '.makefiles'],
 
   /**
    * On project folder created and files synced
