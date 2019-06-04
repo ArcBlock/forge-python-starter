@@ -1,9 +1,18 @@
 from os import environ
+from dotenv import load_dotenv, find_dotenv
+import os
+import base64
+
+# load_dotenv()
+
+# SERVER_HOST = os.getenv('SERVER_HOST')
+# APP_PK = base64.b16decode(os.getenv('APP_PK'))
+# APP_SK = base64.b16decode(os.getenv('APP_SK'))
+# APP_ADDR = os.getenv('APP_ADDR')
 
 MONGO_URI = environ.get(
     'MONGO_URI') or 'mongodb://127.0.0.1:27017/forge-python-starter'
 # Let's just use the local mongod instance. Edit as needed.
-
 
 RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 
@@ -11,22 +20,54 @@ RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 # individual items  (defaults to read-only item access).
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
-token = {
+active_token = {
     'item_title': 'token',
-
-    # We choose to override global cache-control directives for this resource.
     'cache_control': 'max-age=10,must-revalidate',
     'cache_expires': 10,
-
-    # most global settings can be overridden at resource level
-    'resource_methods': ['GET', 'POST'],
-
+    'resource_methods': ['GET', 'POST', 'DELETE'],
+    'item_methods': ['GET', 'PATCH', 'PUT', 'DELETE'],
+    'additional_lookup': {
+        'url': 'regex("[\w]+")',
+        'field': 'token'
+    },
     'schema': {
-        'did': {
+        'token': {
             'type': 'string',
             'unique': True,
+        },
+        'status': {
+            'type': 'string'
         }
     }
 }
 
-DOMAIN = {'people': {}, 'token':token}
+user = {
+    'item_title': 'user',
+    'cache_control': 'max-age=10,must-revalidate',
+    'cache_expires': 10,
+    'resource_methods': ['GET', 'POST', 'DELETE'],
+    'schema': {
+        'did': {
+            'type': 'string',
+            'unique': True,
+        },
+        'name': {
+            'type': 'string',
+            'unique': True,
+        },
+        'email': {
+            'type': 'string'
+        },
+        'mobile': {
+            'type': 'string'
+        },
+        'createdAt': {
+            'type': 'string'
+        },
+        'updatedAt': {
+            'type': 'string'
+        }
+    }
+}
+
+DOMAIN = {'user': user, 'token': active_token}

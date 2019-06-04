@@ -19,7 +19,7 @@
     "url": "https://github.com/ArcBlock/forge-dapp-starters/issues",
     "email": "shijun@arcblock.io"
   },
-  "proxy": "http://0.0.0.0:8000",
+  "proxy": "http://0.0.0.0:5000",
   "dependencies": {
     "@arcblock/did": "^0.28.0",
     "@arcblock/did-auth": "^0.28.0",
@@ -62,7 +62,7 @@
     "styled-components": "^4.2.0"
   },
   "scripts": {
-    "lint": "eslint src api",
+    "lint": "eslint src",
     "precommit": "yarn lint",
     "prepush": "yarn lint",
     "clean": "rm -rf build api/dist",
