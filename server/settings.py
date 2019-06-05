@@ -1,10 +1,7 @@
 from os import environ
-from dotenv import load_dotenv, find_dotenv
-import os
-import base64
 
 MONGO_URI = environ.get(
-    'MONGO_URI') or 'mongodb://127.0.0.1:27017/forge-python-starter'
+        'MONGO_URI') or 'mongodb://127.0.0.1:27017/forge-python-starter'
 # Let's just use the local mongod instance. Edit as needed.
 
 RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
