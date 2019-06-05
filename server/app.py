@@ -11,7 +11,6 @@ from flask import request
 from forge_sdk import did as forge_did, utils as forge_utils
 
 from server.config import APP_ADDR, APP_PK, APP_SK
-
 logger = logging.getLogger('app')
 
 app = Eve()
@@ -35,7 +34,6 @@ def server_url(endpoint):
 def session():
     return "{}"
 
-
 # NO.1 generate action token
 
 
@@ -56,7 +54,6 @@ def get_token():
     else:
         return json.dumps({'error': "wrong"})
 
-
 # NO.3 check status of action token
 
 
@@ -70,8 +67,6 @@ def get_status():
                 {'token': data.get('token'), 'status': data.get('status')})
     else:
         return json.dumps({'error': 'error'})
-
-
 # NO.4 and NO.5
 
 
