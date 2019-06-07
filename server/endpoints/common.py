@@ -17,7 +17,7 @@ logger = logging.getLogger('common-api')
 
 def token(endpoint):
     # TODO: change token name
-    token = secrets.token_urlsafe(8)
+    token = secrets.token_hex(8)
     response = utils.mark_token_status(token, 'created')
 
     url = forge_utils.did_url(
