@@ -1,10 +1,10 @@
 from server.endpoints import common
 from server.endpoints.login import login
-from server.endpoints.payment import payment
+from server.endpoints.checkin import checkin
 
-endpoints = [login, payment]
+endpoints = [login,checkin]
 
-operations = ['token', 'status', 'timeout']
+operations = ['status', 'timeout']
 
 
 def add_common_operation(endpoint, operation):
@@ -15,3 +15,4 @@ def add_common_operation(endpoint, operation):
 for operation in operations:
     for endpoint in endpoints:
         add_common_operation(endpoint, operation)
+

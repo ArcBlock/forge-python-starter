@@ -27,6 +27,9 @@ active_token = {
         },
         'status': {
             'type': 'string'
+        },
+        'sessionToken': {
+            'type': 'string'
         }
     }
 }
@@ -36,6 +39,10 @@ user = {
     'cache_control': 'max-age=10,must-revalidate',
     'cache_expires': 10,
     'resource_methods': ['GET', 'POST', 'DELETE'],
+    'additional_lookup': {
+        'url': 'regex("did:[\w]+:[\w]+")',
+        'field': 'did'
+    },
     'schema': {
         'did': {
             'type': 'string',
@@ -48,16 +55,12 @@ user = {
         'email': {
             'type': 'string'
         },
-        'mobile': {
-            'type': 'string'
+        'mobile':{
+            'type':'string'
         },
-        'createdAt': {
-            'type': 'string'
-        },
-        'updatedAt': {
-            'type': 'string'
-        }
     }
 }
 
 DOMAIN = {'user': user, 'token': active_token}
+
+JWT_SECRET_KEY='python-starter-secret-key'
