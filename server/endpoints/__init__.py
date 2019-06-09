@@ -1,8 +1,9 @@
 from server.endpoints import common
 from server.endpoints.login import login
 from server.endpoints.checkin import checkin
+from server.endpoints.payment import payment
 
-endpoints = [login,checkin]
+endpoints = [login,checkin, payment]
 
 operations = ['status', 'timeout']
 
