@@ -50,7 +50,7 @@ clean:
 
 run:
 	@echo "Running the software..."
-	@yarn start
+	@yarn start:client
 
 include .makefiles/*.mk
 
