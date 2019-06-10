@@ -10,18 +10,16 @@ from forge_sdk import did as forge_did
 from server import utils
 from server.endpoints.lib import auth_component
 
-logger = logging.getLogger('did-login')
 
-
-def get_handler(args):
-    params = {
+def get_handler(**args):
+    return {
+        'request_type': 'profile',
         'workflow': 'get-profile'
     }
-    return forge_did.require_profile(**args.did_params, **params)
 
 
-def post_handler(args):
-    wallet_res = args.wallet_res
+def post_handler(**args):
+    wallet_res = args.get('wallet_res')
     did = wallet_res.get_did()
     res = requests.post(url=utils.server_url('/user'),
                         data={'did': did,
@@ -32,9 +30,9 @@ def post_handler(args):
 
     session_token = create_access_token(identity=did)
 
-    utils.mark_token_status(args.token, 'succeed', session_token)
+    utils.mark_token_status(args.get('token'), 'succeed', session_token)
 
-    return jsonify(status=0)
+    return {'status': 0}
 
 
 login = auth_component.create('login',

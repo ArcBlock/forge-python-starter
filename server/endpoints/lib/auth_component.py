@@ -1,10 +1,13 @@
+import json
+import secrets
+
 from flask import Blueprint
-from flask import request
+from flask import jsonify, make_response, request
 from forge_sdk import did as forge_did
+from forge_sdk import utils as forge_utils
 
 from server import env
 from server import utils
-from server.endpoints.auth import common
 
 
 def create(operation,
@@ -31,35 +34,68 @@ def create(operation,
                 'app_sk': env.APP_SK,
                 'user_did': user_did,
             }
-            return get_handler(AuthHandlerArgs(token=token,
-                                                    user_did=user_did,
-                                                    user_pk=user_pk,
-                                                    did_params=params))
+            user_params = get_handler(token=token,
+                                      user_did=user_did,
+                                      user_pk=user_pk,
+                                      did_params=params)
+
+            return utils.send_did_request(**params, **user_params)
 
         if request.method == 'POST':
             wallet_res = forge_did.WalletResponse(request.get_json())
-            return post_handler(AuthHandlerArgs(token=token,
-                                                     wallet_res=wallet_res))
+            response_data = post_handler(token=token,
+                                         wallet_res=wallet_res)
+            return jsonify(response_data)
 
     @bp.route('/token', methods=['GET'])
-    def get_token():
-        return common.token(operation)
+    def token():
+        return get_token(operation)
 
     @bp.route('/status', methods=['GET'])
-    def get_status():
-        return common.status()
+    def status():
+        return check_status()
 
     @bp.route('/timeout', methods=['GET'])
     def timeout():
-        return common.timeout()
+        return token_timeout()
 
     return bp
 
 
-class AuthHandlerArgs:
-    def __init__(self, **kwargs):
-        self.token = kwargs.get('token')
-        self.user_did = kwargs.get('user_did')
-        self.user_pk = kwargs.get('user_pk')
-        self.wallet_res = kwargs.get('wallet_res')
-        self.did_params = kwargs.get('did_params')
+def get_token(endpoint):
+    token = secrets.token_hex(8)
+    response = utils.mark_token_status(token, 'created')
+
+    url = forge_utils.did_url(
+            url=utils.server_url(f'/api/did/{endpoint}/auth?_t_={token}'),
+            action='requestAuth',
+            app_pk=forge_utils.multibase_b58encode(env.APP_PK),
+            app_addr=env.APP_ADDR)
+
+    if response.status_code == 201:
+        return jsonify(token=token, url=url)
+    else:
+        return jsonify(error="error in getting token")
+
+
+def check_status():
+    token = request.args.get('_t_')
+    response = utils.mark_token_status(token)
+    data = response.json()
+    if response.status_code == 200:
+        if data.get('sessionToken'):
+            return jsonify(token=data.get('token'),
+                           status=data.get('status'),
+                           sessionToken=data.get('sessionToken'))
+        else:
+            return jsonify(token=data.get('token'),
+                           status=data.get('status'))
+    else:
+        logger.error(str(response))
+        return jsonify(error="error in getting status")
+
+
+def token_timeout():
+    token = request.args.get('_t_')
+    utils.mark_token_status(token, 'expired')
+    return json.dumps({'error': 'error'})
