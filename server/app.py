@@ -18,9 +18,9 @@ jwt = JWTManager(app)
 
 def register_blueprints(application):
     from server import endpoints as ep
-    application.register_blueprint(ep.login, url_prefix='/api/did/login')
-    application.register_blueprint(ep.checkin, url_prefix='/api/did/checkin')
-    application.register_blueprint(ep.payment, url_prefix='/api/did/payment')
+    application.register_blueprint(ep.login)
+    application.register_blueprint(ep.checkin)
+    application.register_blueprint(ep.payment)
 
 
 
@@ -49,7 +49,7 @@ def session():
 
 @app.route("/api/payments", methods=['GET'])
 @jwt_required
-def list_payments():
+def payments():
     did = get_jwt_identity()
     res = forge_rpc.list_transactions(
             address_filter=forge_protos.AddressFilter(
@@ -59,7 +59,7 @@ def list_payments():
     if len(res.transactions) > 0:
         tx = next(tx for tx in res.transactions if tx.code == 0)
         if tx and tx.hash:
-            return jsonify(tx)
+            return jsonify(hash=tx.hash)
     return make_response()
 
 
