@@ -13,14 +13,14 @@ from server.endpoints.lib import auth_component
 logger = logging.getLogger('did-login')
 
 
-def auth_get_handler(args):
+def get_handler(args):
     params = {
         'workflow': 'get-profile'
     }
     return forge_did.require_profile(**args.did_params, **params)
 
 
-def auth_post_handler(args):
+def post_handler(args):
     wallet_res = args.wallet_res
     did = wallet_res.get_did()
     res = requests.post(url=utils.server_url('/user'),
@@ -37,6 +37,6 @@ def auth_post_handler(args):
     return jsonify(status=0)
 
 
-login = auth_component.construct_blueprint('login',
-                                           auth_get_handler,
-                                           auth_post_handler)
+login = auth_component.create('login',
+                              get_handler,
+                              post_handler)

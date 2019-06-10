@@ -7,9 +7,9 @@ from server import utils
 from server.endpoints.auth import common
 
 
-def construct_blueprint(operation,
-                        auth_get_handler,
-                        auth_post_handler):
+def create(operation,
+           get_handler,
+           post_handler):
     bp = Blueprint(f'auth-component-{operation}', __name__,
                    url_prefix=f'/api/did/{operation}')
 
@@ -31,14 +31,14 @@ def construct_blueprint(operation,
                 'app_sk': env.APP_SK,
                 'user_did': user_did,
             }
-            return auth_get_handler(AuthHandlerArgs(token=token,
+            return get_handler(AuthHandlerArgs(token=token,
                                                     user_did=user_did,
                                                     user_pk=user_pk,
                                                     did_params=params))
 
         if request.method == 'POST':
             wallet_res = forge_did.WalletResponse(request.get_json())
-            return auth_post_handler(AuthHandlerArgs(token=token,
+            return post_handler(AuthHandlerArgs(token=token,
                                                      wallet_res=wallet_res))
 
     @bp.route('/token', methods=['GET'])
