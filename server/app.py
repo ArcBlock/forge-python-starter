@@ -59,7 +59,7 @@ def list_payments():
     if len(res.transactions) > 0:
         tx = next(tx for tx in res.transactions if tx.code == 0)
         if tx and tx.hash:
-            return jsonify(tx)
+            return jsonify(hash=tx.hash)
     return make_response()
 
 

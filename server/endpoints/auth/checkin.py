@@ -3,7 +3,7 @@ from forge_sdk import did as forge_did, rpc as forge_rpc, utils as forge_utils
 
 from server import env
 from server import utils
-from server.endpoints import common
+from server.endpoints.auth import common
 import logging
 
 logger = logging.getLogger('did-checkin')
