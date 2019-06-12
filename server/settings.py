@@ -64,3 +64,4 @@ user = {
 DOMAIN = {'user': user, 'token': active_token}
 
 JWT_SECRET_KEY='python-starter-secret-key'
+SQLALCHEMY_DATABASE_URI='sqlite:////Users/shi/tmp/flask.db'

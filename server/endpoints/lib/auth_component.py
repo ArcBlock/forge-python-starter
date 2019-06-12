@@ -2,12 +2,13 @@ import json
 import secrets
 
 from flask import Blueprint
-from flask import jsonify, make_response, request
+from flask import jsonify, request
 from forge_sdk import did as forge_did
 from forge_sdk import utils as forge_utils
 
 from server import env
 from server import utils
+from server.app import forge
 
 
 def create(operation,
@@ -33,6 +34,11 @@ def create(operation,
                 'app_pk': env.APP_PK,
                 'app_sk': env.APP_SK,
                 'user_did': user_did,
+                'chain_id': forge.config.chain_id,
+                'chain_version': forge.rpc.get_chain_info().info.version,
+                'token_symbol': forge.config.symbol,
+                'decimals': forge.config.decimals,
+
             }
             user_params = get_handler(token=token,
                                       user_did=user_did,

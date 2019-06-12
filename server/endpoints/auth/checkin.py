@@ -1,14 +1,18 @@
-from forge_sdk import did as forge_did, rpc as forge_rpc, utils as forge_utils
+from forge_sdk import did as forge_did, utils as forge_utils
 
 from server import utils
 from server.endpoints.lib import auth_component
+from server.app import forge
+import logging
+
 
 
 def get_handler(**args):
-    tx = forge_rpc.build_poke_tx(
+    tx = forge_utils.build_poke_tx(
+            chain_id=forge.config.chain_id,
             address=args.get('user_did').lstrip(forge_did.PREFIX),
             pk=forge_utils.multibase_b58decode(args.get('user_pk')))
-
+    logging.debug(tx)
     return {
         'request_type': 'signature',
         'workflow': 'poke',
@@ -22,18 +26,21 @@ def post_handler(**args):
     token = args.get('token')
 
     tx = wallet_res.get_origin_tx()
+    logging.debug(f'nonce: {tx.nonce}')
     tx.signature = wallet_res.get_signature()
 
-    res = forge_rpc.send_tx(tx)
+    res = forge.rpc.send_tx(tx)
     if res.hash:
         utils.mark_token_status(token, 'succeed')
+        logging.debug(f'hash: {res.hash}')
         return {'status': 0,
                 'hash': res.hash,
                 'tx': forge_utils.multibase_b58encode(
                         tx.SerializeToString())}
     else:
         utils.mark_token_status(token, 'error')
-        return {'error': f"Oops, error code: {res.code}"}
+        logging.error(res)
+        return {'error': f"Oops, something is wrong :("}
 
 
 checkin = auth_component.create('checkin',

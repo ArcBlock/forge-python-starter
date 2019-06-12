@@ -4,8 +4,7 @@ import requests
 from eve import Eve
 from flask import g, jsonify, make_response
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
-from forge_sdk import did as forge_did, protos as forge_protos, \
-    rpc as forge_rpc
+from forge_sdk import ForgeConn, did as forge_did, protos as forge_protos
 
 from server import env
 from server import utils
@@ -14,6 +13,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 app = Eve()
 jwt = JWTManager(app)
+forge = ForgeConn()
+forge_rpc = forge.rpc
 
 
 def register_blueprints(application):
@@ -21,7 +22,6 @@ def register_blueprints(application):
     application.register_blueprint(ep.login)
     application.register_blueprint(ep.checkin)
     application.register_blueprint(ep.payment)
-
 
 
 @app.before_request

@@ -1,17 +1,19 @@
-from forge_sdk import did as forge_did, rpc as forge_rpc, utils as forge_utils
+from forge_sdk import did as forge_did, utils as forge_utils
 
 from server import env
 from server import utils
+from server.app import forge
 from server.endpoints.lib import auth_component
 
 
 def get_handler(**args):
     address = args.get('user_did').lstrip(forge_did.PREFIX)
     pk = forge_utils.multibase_b58decode(args.get('user_pk'))
-    tx = forge_rpc.build_transfer_tx(to=env.APP_ADDR,
-                                     value=2,
-                                     address=address,
-                                     pk=pk)
+    tx = forge_utils.build_transfer_tx(chain_id=forge.config.chain_id,
+                                       to=env.APP_ADDR,
+                                       value=2,
+                                       address=address,
+                                       pk=pk)
 
     return {
         'request_type': 'signature',
@@ -27,7 +29,7 @@ def post_handler(**args):
     tx = wallet_res.get_origin_tx()
     tx.signature = wallet_res.get_signature()
 
-    res = forge_rpc.send_tx(tx)
+    res = forge.rpc.send_tx(tx)
     if res.hash:
         utils.mark_token_status(token, 'succeed')
         return {'status': 0,
