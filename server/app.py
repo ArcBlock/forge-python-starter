@@ -1,13 +1,11 @@
 import logging
 
-import requests
 from eve import Eve
 from flask import g, jsonify, make_response
 from flask_jwt_extended import (JWTManager, get_jwt_identity, jwt_required)
-from forge_sdk import ForgeConn, did as forge_did, protos as forge_protos
+from forge_sdk import did as forge_did, protos as forge_protos
 
 from server import env
-from server import utils
 
 logging.basicConfig(level=logging.DEBUG)
 from eve_sqlalchemy.validation import ValidatorSQL
@@ -39,15 +37,15 @@ def before_request():
 @app.route("/api/session", methods=['GET', 'POST'])
 @jwt_required
 def session():
+    from server.models import DBUser
     did = get_jwt_identity()
-    res = requests.get(url=utils.server_url(f'/user/{did}'))
-    if res.status_code == 200:
-        data = res.json()
+    user = DBUser.query.filter_by(did=did).first()
+    if user:
         return jsonify(user={
-            'email': data.get('email'),
-            'mobile': data.get('mobile', ''),
-            'did': data.get('did'),
-            'name': data.get('name'),
+            'email': user.email,
+            'mobile': user.mobile,
+            'did': user.did,
+            'name': user.name,
         })
     else:
         return '{}'
@@ -62,11 +60,11 @@ def payments():
                     sender=did.lstrip(forge_did.PREFIX),
                     receiver=env.APP_ADDR),
             type_filter=forge_protos.TypeFilter(types=['transfer']))
-    if len(res.transactions) > 0:
+    try:
         tx = next(tx for tx in res.transactions if tx.code == 0)
-        if tx and tx.hash:
-            return jsonify(hash=tx.hash)
-    return make_response()
+    except Exception:
+        return make_response()
+    return jsonify(hash=tx.hash)
 
 sql_db = init_db(app)
 
