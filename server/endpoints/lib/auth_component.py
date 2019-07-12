@@ -1,4 +1,3 @@
-import json
 import secrets
 
 from flask import Blueprint
@@ -70,7 +69,7 @@ def create(operation,
 
 def get_token(endpoint):
     token = secrets.token_hex(8)
-    response = utils.mark_token_status(token, 'created')
+    utils.mark_token_status(token, 'created')
 
     url = forge_utils.did_url(
             url=utils.server_url(f'/api/did/{endpoint}/auth?_t_={token}'),
@@ -78,30 +77,23 @@ def get_token(endpoint):
             app_pk=forge_utils.multibase_b58encode(env.APP_PK),
             app_addr=env.APP_ADDR)
 
-    if response.status_code == 201:
-        return jsonify(token=token, url=url)
-    else:
-        return jsonify(error="error in getting token")
+    return jsonify(token=token, url=url)
 
 
 def check_status():
-    token = request.args.get('_t_')
-    response = utils.mark_token_status(token)
-    data = response.json()
-    if response.status_code == 200:
-        if data.get('sessionToken'):
-            return jsonify(token=data.get('token'),
-                           status=data.get('status'),
-                           sessionToken=data.get('sessionToken'))
-        else:
-            return jsonify(token=data.get('token'),
-                           status=data.get('status'))
+    token = utils.check_token_status(request.args.get('_t_'))
+    if not token:
+        return jsonify(error="Token does not exist.")
+    elif token.session_token:
+        return jsonify(token=token.token,
+                       status=token.status,
+                       sessionToken=token.session_token)
     else:
-        logger.error(str(response))
-        return jsonify(error="error in getting status")
+        return jsonify(token=token.token,
+                       status=token.status)
 
 
 def token_timeout():
     token = request.args.get('_t_')
     utils.mark_token_status(token, 'expired')
-    return json.dumps({'error': 'error'})
+    return jsonify(msg="Token has been marked as expired.")

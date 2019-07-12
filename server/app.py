@@ -10,12 +10,18 @@ from server import env
 from server import utils
 
 logging.basicConfig(level=logging.DEBUG)
+from eve_sqlalchemy.validation import ValidatorSQL
+from eve_sqlalchemy import SQL
+from server.models import Base, init_db
+from server.forge import forge
 
-app = Eve()
+
+app = Eve(validator=ValidatorSQL, data=SQL)
 jwt = JWTManager(app)
-forge = ForgeConn()
 forge_rpc = forge.rpc
-
+db = app.data.driver
+Base.metadata.bind = db.engine
+db.Model = Base
 
 def register_blueprints(application):
     from server import endpoints as ep
@@ -62,7 +68,8 @@ def payments():
             return jsonify(hash=tx.hash)
     return make_response()
 
+sql_db = init_db(app)
 
 if __name__ == '__main__':
     register_blueprints(app)
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, threaded=True)
