@@ -48,9 +48,13 @@ travis-deploy:
 clean:
 	@echo "Cleaning the build..."
 
-run:
+run-client:
 	@echo "Running the software..."
 	@yarn start:client
+
+run-server:
+	@echo "starting server..."
+	@python server/app.py
 
 include .makefiles/*.mk
 
