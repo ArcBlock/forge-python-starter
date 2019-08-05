@@ -27,17 +27,20 @@ node tools/declare.js
 
 ## Usage
 
+Start python server on 5000
+
+```bash
+make run-server 
+```
+
 Run client on port 3000
 
 ```bash
 make run-client
 ```
 
-Start python server on 5000
 
-```bash
-make run-server
-```
+
 
 ## LICENSE
 

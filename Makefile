@@ -55,7 +55,7 @@ run-client:
 
 run-server:
 	@echo "starting server..."
-	@python server/app.py
+	@export PYTHONPATH=. && python3 forge_symposia/server/app.py
 
 include .makefiles/*.mk
 
