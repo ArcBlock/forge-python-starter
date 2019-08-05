@@ -18,7 +18,8 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
-	@yarn
+	@yarn install
+	@pip install -r requirements.txt
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
