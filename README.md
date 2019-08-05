@@ -5,6 +5,8 @@
 - Node.js >= v10.x
 - Python 3.x or have [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#install-macos-silent) installed
 - A running Blockchain node # by forge-cli
+- install yarn
+- `brew install automake libtool pkg-config libffi gmp openssl`
 
 ## Run Forge
 ```bash
@@ -14,20 +16,20 @@ forge start
 ## Installation
 
 ``` bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 yarn install
 ```
 
 ### Config env file
 
 Create a `.env` file , and set your own config. Make sure you have your ip address correct.
-The `env_sample` file is a sample.
+The `env_example` file is a sample.
 
 #### Declare app wallet
 This step reads app wallet information from `.env` and declare the wallet on chain
 
 ```bash
-node tools/declare.js
+make declare
 ```
 
 ## Usage

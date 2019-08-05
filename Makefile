@@ -19,6 +19,12 @@ install:
 	@echo "Install software required for this repo..."
 	@npm install -g yarn
 
+create-env:
+    (\
+       source /usr/local/bin/virtualenv/bin/activate;\
+       pip install -r requirements.txt;\
+    )
+
 dep:
 	@echo "Install dependencies required for this repo..."
 	@yarn install
@@ -59,6 +65,9 @@ run-client:
 run-server:
 	@echo "starting server..."
 	@export PYTHONPATH=. && python3 server/app.py
+
+declare:
+	@node tools/declare.js
 
 include .makefiles/*.mk
 
