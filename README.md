@@ -1,8 +1,29 @@
 # Forge Python Starter
 
+## Requirements
+
+- Node.js >= v10.x
+- Python 3.x or have [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#install-macos-silent) installed
+- A running Blockchain node # by forge-cli
+
 ## Installation
 
-`make init`
+``` bash
+pip install -r requirements.txt
+yarn install
+```
+
+### Config env file
+
+Create a `.env` file , and set your own config.
+The `env_sample` file is a sample.
+
+#### Declare app wallet
+This step reads app wallet information from `.env` and declare the wallet on chain
+
+```bash
+node tools/declare.js
+```
 
 ## Usage
 
