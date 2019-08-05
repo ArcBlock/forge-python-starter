@@ -9,6 +9,9 @@ build:
 init: install dep
 	@echo "Initializing the repo..."
 
+create-env:
+	@conda create --name myenv python=3.6
+
 travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
 
@@ -55,7 +58,7 @@ run-client:
 
 run-server:
 	@echo "starting server..."
-	@export PYTHONPATH=. && python3 forge_symposia/server/app.py
+	@export PYTHONPATH=. && python3 server/app.py
 
 include .makefiles/*.mk
 

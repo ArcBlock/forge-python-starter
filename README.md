@@ -6,6 +6,11 @@
 - Python 3.x or have [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#install-macos-silent) installed
 - A running Blockchain node # by forge-cli
 
+## Run Forge
+```bash
+forge start
+```
+
 ## Installation
 
 ``` bash
