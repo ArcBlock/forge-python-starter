@@ -15,7 +15,7 @@ yarn install
 
 ### Config env file
 
-Create a `.env` file , and set your own config.
+Create a `.env` file , and set your own config. Make sure you have your ip address correct.
 The `env_sample` file is a sample.
 
 #### Declare app wallet
