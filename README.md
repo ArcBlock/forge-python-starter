@@ -3,29 +3,37 @@
 ## Requirements
 
 - Node.js >= v10.x
-- Python 3.x or have [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#install-macos-silent) installed
-- A running Blockchain node # by forge-cli
+- Python 3.x
+- A running Blockchain node using [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html)
 - install yarn
 - `brew install automake libtool pkg-config libffi gmp openssl`
 
 ## Run Forge
+Install [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html) and start forge.
 ```bash
 forge start
 ```
 
 ## Installation
 
-``` bash
-pip3 install -r requirements.txt
-yarn install
-```
+### Initializae the repo
+
+Run `make init` to initialize the repository with required front-end libraries.
+
+### Python installation
+
+It's recommended that you start a fresh python environment for this project to avoid dependencies conflict, you can run `make create-env` to create one with all required dependencies installed.
+
+If you prefer to install python dependencies in your current environment, you can run `make install`. This will install required python dependencies.
 
 ### Config env file
 
-Create a `.env` file , and set your own config. Make sure you have your ip address correct.
-The `env_example` file is a sample.
+Create a `.env` file , and set your own config. The `env_example` file is an example.
 
-#### Declare app wallet
+Make sure you replace all ip addresses correctly. If you are not sure about your ip address, you can run `ifconfig en0` in terminal, and your ip address should be right after the `inet` keyword.
+
+### Declare app wallet
+
 This step reads app wallet information from `.env` and declare the wallet on chain
 
 ```bash
@@ -37,7 +45,7 @@ make declare
 Start python server on 5000
 
 ```bash
-make run-server 
+make run-server
 ```
 
 Run client on port 3000
@@ -45,9 +53,6 @@ Run client on port 3000
 ```bash
 make run-client
 ```
-
-
-
 
 ## LICENSE
 
