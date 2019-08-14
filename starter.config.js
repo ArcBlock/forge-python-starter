@@ -7,10 +7,10 @@
 /* eslint-disable import/order */
 /* eslint-disable no-console */
 /* eslint-disable object-curly-newline */
+const chalk = require('chalk');
 const ip = require('ip');
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk');
 const shell = require('shelljs');
 const camelCase = require('lodash/camelCase');
 const { execSync } = require('child_process');
@@ -23,8 +23,10 @@ const defaults = {
   appName: 'Forge Python Starter',
   appDescription:
     'Starter dApp built on python that runs on forge powered blockchain',
-  appPort: 3030,
   mongoUri: 'mongodb://127.0.0.1:27017/forge-python-starter',
+  appPort: 3000,
+  serverPort: 5000,
+  grpcPort: 28210,
 };
 
 const questions = [
@@ -55,6 +57,26 @@ const questions = [
     default: defaults.appPort,
     validate: input => {
       if (!input) return 'dApp listening port should not be empty';
+      return true;
+    },
+  },
+  {
+    type: 'text',
+    name: 'grpcPort',
+    message: 'Forge gRPC port:',
+    default: defaults.grpcPort,
+    validate: input => {
+      if (!input) return 'gRPC port should not be empty';
+      return true;
+    },
+  },
+  {
+    type: 'text',
+    name: 'serverPort',
+    message: 'Python server port:',
+    default: defaults.serverPort,
+    validate: input => {
+      if (!input) return 'Python server port should not be empty';
       return true;
     },
   },
@@ -95,6 +117,8 @@ async function onConfigured(config) {
     mongoUri,
     client,
     symbols,
+    serverPort,
+    grpcPort,
   } = config;
   const ipAddress = ip.address();
 
@@ -126,19 +150,30 @@ async function onConfigured(config) {
   // Generate config
   const configPath = path.join(`${targetDir}`, '.env');
   const configContent = `MONGO_URI="${mongoUri}"
-CHAIN_ID="${chainId}"
-CHAIN_HOST="${chainHost
+REACT_APP_CHAIN_ID="${chainId}"
+REACT_APP_CHAIN_HOST="${chainHost
     .replace('127.0.0.1', ipAddress)
     .replace('localhost', ipAddress)}"
-APP_NAME="${appName}"
+REACT_APP_APP_NAME="${appName}"
 APP_DESCRIPTION="${appDescription}"
 APP_PORT="${appPort}"
-APP_SK="${wallet.secretKey}"
-APP_ID="${wallet.toAddress()}"
+APP_PK="${wallet.publicKey.slice(2).toUpperCase()}"
+APP_SK="${wallet.secretKey.slice(2).toUpperCase()}"
+REACT_APP_APP_ID="${wallet.toAddress()}"
 APP_TOKEN_SECRET="${wallet.publicKey.slice(16)}"
 APP_TOKEN_TTL="1d"
-BASE_URL="http://${ipAddress}:${appPort}"`;
+FORGE_SOCK_GRPC="127.0.0.1:${grpcPort}"
+REACT_APP_SERVER_PORT="${serverPort}"
+REACT_APP_SERVER_HOST="http://${ipAddress}:${serverPort}"
+REACT_APP_BASE_URL="http://localhost:${appPort}"`;
   fs.writeFileSync(configPath, configContent);
+  const packageJSONPath = path.join(targetDir, 'package.json');
+  const packageJSON = require(packageJSONPath);
+  packageJSON.proxy = `http://0.0.0.0:${serverPort}`;
+  packageJSON.scripts['start:client'] = `PORT=${appPort} ${
+    packageJSON.scripts['start:client']
+  }`;
+  fs.writeFileSync(packageJSONPath, JSON.stringify(packageJSON, null, 4));
   console.log(`${symbols.success} application config generated ${configPath}`);
 }
 
@@ -156,7 +191,9 @@ function onCreated(config) {
   const { targetDir, symbols } = config;
   const pm = shell.which('yarn') ? 'yarn' : 'npm';
   console.log(`${symbols.info} installing application dependencies...`);
-  execSync(`cd ${path.join(targetDir, 'client')} && ${pm} install`, { stdio: [0, 1, 2] });
+  execSync(`cd ${targetDir} && git init && make create-env && ${pm} install`, {
+    stdio: [0, 1, 2],
+  });
 }
 
 /**
@@ -172,9 +209,12 @@ function onCreated(config) {
 function onComplete(config) {
   const { targetDir } = config;
   const pm = shell.which('yarn') ? 'yarn' : 'npm';
+
   shell.echo('');
-  shell.echo(chalk.cyan(`cd ${path.join(targetDir, 'client')}`));
-  shell.echo(chalk.cyan(`${pm} start`));
+  shell.echo('Start:');
+  shell.echo(`1. ${chalk.cyan(`cd ${targetDir}`)}`);
+  shell.echo(`2. ${chalk.cyan('make run-server')}`);
+  shell.echo(`3. ${chalk.cyan(`${pm} start`)}`);
   shell.echo('');
 }
 
@@ -209,13 +249,6 @@ module.exports = {
    * @public
    */
   questions,
-
-  /**
-   * List of files/folders to exclude form the starter folder when creating new projects
-   * @variable
-   * @public
-   */
-  blacklist: ['starter.config.js', 'Makefile', '.makefiles'],
   onConfigured,
   onCreated,
   onComplete,

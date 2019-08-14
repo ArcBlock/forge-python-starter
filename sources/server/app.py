@@ -70,4 +70,4 @@ sql_db = init_db(app)
 
 if __name__ == '__main__':
     register_blueprints(app)
-    app.run(host='0.0.0.0', debug=True, threaded=True)
+    app.run(host='0.0.0.0', debug=True, threaded=True, port=env.SERVER_PORT)

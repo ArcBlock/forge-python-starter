@@ -26,7 +26,11 @@ run-client:
 
 run-server:
 	@echo "starting server..."
-	@export PYTHONPATH=. && python server/app.py;
+	( \
+		source /usr/local/bin/virtualenvwrapper.sh; \
+		workon forge-env; \
+		export PYTHONPATH=. && python server/app.py; \
+	)
 
 declare:
 	@node tools/declare.js

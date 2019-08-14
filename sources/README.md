@@ -2,12 +2,12 @@
 
 ## Requirements
 
+- Build tools: `brew install automake libtool pkg-config libffi gmp openssl`
 - Node.js >= v10.x
 - Python 3.x - 3.6
 - Pip3
 - A running Blockchain node using [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html)
 - install yarn
-- `brew install automake libtool pkg-config libffi gmp openssl`
 
 ## Run Forge
 Install [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html) and start forge.
@@ -17,7 +17,7 @@ forge start
 
 ## Installation
 
-### Initializae the repo
+### Initialize the repo
 
 Run `make init` to initialize the repository with required front-end libraries.
 
@@ -26,16 +26,6 @@ Run `make init` to initialize the repository with required front-end libraries.
 It's recommended that you start a fresh python environment for this project to avoid dependencies conflict, you can run `make create-env` to create one with all required dependencies installed.
 
 If you prefer to install python dependencies in your current environment, you can run `make install`. This will install required python dependencies.
-
-### Config env file
-
-Create a `.env` file , and set your own config. The `env_example` file is an example.
-
-Make sure you replace all ip addresses correctly. If you are not sure about your ip address, you can run `ifconfig en0` in terminal, and your ip address should be right after the `inet` keyword.
-
-### Declare app wallet
-
-This step reads app wallet information from `.env` and declare the wallet on chain
 
 ```bash
 make declare
