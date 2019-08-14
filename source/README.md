@@ -43,7 +43,7 @@ make declare
 
 ## Usage
 
-Start python server on 5000. If you ran `make create-env` before, run` source /usr/local/bin/virtualenvwrapper.sh;workon forge-env;` before you run below command:
+Start python server on 5000. If you ran `make create-env` before, run `source /usr/local/bin/virtualenvwrapper.sh;workon forge-env;` before you run below command:
 
 ```bash
 make run-server

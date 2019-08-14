@@ -1,0 +1,7 @@
+.tmp.mk
+node_modules
+.idea
+.DS_Store
+.next
+.env
+**/__pycache__
