@@ -3,7 +3,8 @@
 ## Requirements
 
 - Node.js >= v10.x
-- Python 3.x
+- Python 3.x - 3.6
+- Pip3
 - A running Blockchain node using [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html)
 - install yarn
 - `brew install automake libtool pkg-config libffi gmp openssl`

@@ -9,8 +9,8 @@ init:
 	@yarn install
 
 create-env:
-	@pip install virtualenv
-	@pip install virtualenvwrapper
+	@pip3 install virtualenv
+	@pip3 install virtualenvwrapper
 	( \
 		source /usr/local/bin/virtualenvwrapper.sh; \
 		mkvirtualenv -p python3 forge-env; \
