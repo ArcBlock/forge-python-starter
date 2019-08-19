@@ -14,7 +14,7 @@ create-env:
 	( \
 		source /usr/local/bin/virtualenvwrapper.sh; \
 		mkvirtualenv -p python3 forge-env; \
-		pip install -r requirements.txt; \
+		pip3 install -r requirements.txt; \
 	)
 
 install:
@@ -26,11 +26,7 @@ run-client:
 
 run-server:
 	@echo "starting server..."
-	( \
-		source /usr/local/bin/virtualenvwrapper.sh; \
-		workon forge-env; \
-		python server/app.py; \
-	)
+	@export PYTHONPATH=. && python server/app.py;
 
 declare:
 	@node tools/declare.js
