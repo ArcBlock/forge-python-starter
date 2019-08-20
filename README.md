@@ -6,10 +6,16 @@
 
 Python starter project that integrates [Forge SDK](https://docs.arcblock.io/forge/latest/), [Python SDK](https://docs.arcblock.io/forge/latest/sdk/python.html) with mainstream javascript application batteries:
 
-- [React.js](https://reactjs.org/) this project was bootstrapped with [Create  React App](https://github.com/facebook/create-react-app).
-- [Material-UI](https://material-ui.com/) for reusable react components
-- [Express.js](http://expressjs.com/) as custom web server that can serve custom api
-- [Mongoose](https://mongoosejs.com/) as database ORM layer
+Forge JavaScript SDK libraries included in the starter project:
+
+- [@arcblock/forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet) Utility function to create and use a forge compatible wallet, the wallet is also DID compatible.
+- [@arcblock/graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client) Client library to connect your app with forge powered blockchain node, all requests are sent over http/https, can be used in both Node.js and browser environment.
+- [@arcblock/mcrypto](https://www.npmjs.com/package/@arcblock/mcrypto) Forge mcrypto implementation for javascript, just a wrapper around existing javascript crypto libraries.
+- [@arcblock/react-forge](https://www.npmjs.com/package/@arcblock/react-forge) UI components that can be used in React Applications built on top of forge powered blockchain.
+
+Forge Python SDK libraries included in the starter project:
+
+- [Forge Python SDK](https://docs.arcblock.io/forge/sdks/python/latest/)
 
 ## Runtime Requirements
 
