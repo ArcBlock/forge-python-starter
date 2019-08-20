@@ -7,11 +7,13 @@
 - Python 3.x - 3.6
 - Pip3
 - A running Blockchain node using [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html)
-- install yarn
+- npm or yarn
 
 ## Run Forge
+
 Install [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html) and start forge.
-```bash
+
+``` bash
 forge start
 ```
 
