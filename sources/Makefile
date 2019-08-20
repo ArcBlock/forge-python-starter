@@ -26,15 +26,11 @@ run-client:
 
 run-server:
 	@echo "starting server..."
-<<<<<<< HEAD:source/Makefile
-	@export PYTHONPATH=. && python server/app.py;
-=======
 	( \
 		source /usr/local/bin/virtualenvwrapper.sh; \
 		workon forge-env; \
 		export PYTHONPATH=. && python server/app.py; \
 	)
->>>>>>> refact: add readme and others:sources/Makefile
 
 declare:
 	@node tools/declare.js
