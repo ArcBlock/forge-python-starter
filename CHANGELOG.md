@@ -1,22 +1,5 @@
-## 0.3.0 (August 10, 2019)
+## 0.3.1 (August 16, 2019)
 
-
-
-## 0.2.0 (August 05, 2019)
-
-
-## 0.1.0 (June 10, 2019)
-
-
-## 0.1.0 (June 08, 2019)
-
-
-## 0.1.0 (June 07, 2019)
-
-
-## 0.1.0 (June 07, 2019)
-
-
-## 0.1.0 (June 05, 2019)
-
-
+- Split build dependencies and starter dependencies
+- Remove useless build script
+- Uniform pip3 in make file

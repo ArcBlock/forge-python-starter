@@ -1,58 +1,85 @@
-# Forge Python Starter
+![forge-python-starter](https://www.arcblock.io/.netlify/functions/badge?text=forge-python-starter)
 
-## Requirements
+> Brings tons of thousands react libraries/components to dApps that run on [forge](https://www.arcblock.io/en/forge-sdk) powered blockchain.
 
-- Node.js >= v10.x
-- Python 3.x
-- A running Blockchain node using [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html)
-- install yarn
-- `brew install automake libtool pkg-config libffi gmp openssl`
+![](./docs/starter-home.png)
 
-## Run Forge
-Install [Forge-cli](https://docs.arcblock.io/forge/latest/tools/forge_cli.html) and start forge.
-```bash
-forge start
-```
+Python starter project that integrates [Forge SDK](https://docs.arcblock.io/forge/latest/), [Python SDK](https://docs.arcblock.io/forge/latest/sdk/python.html) with mainstream javascript application batteries:
 
-## Installation
+Forge JavaScript SDK libraries included in the starter project:
 
-### Initializae the repo
+- [@arcblock/forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet) Utility function to create and use a forge compatible wallet, the wallet is also DID compatible.
+- [@arcblock/graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client) Client library to connect your app with forge powered blockchain node, all requests are sent over http/https, can be used in both Node.js and browser environment.
+- [@arcblock/mcrypto](https://www.npmjs.com/package/@arcblock/mcrypto) Forge mcrypto implementation for javascript, just a wrapper around existing javascript crypto libraries.
+- [@arcblock/react-forge](https://www.npmjs.com/package/@arcblock/react-forge) UI components that can be used in React Applications built on top of forge powered blockchain.
 
-Run `make init` to initialize the repository with required front-end libraries.
+Forge Python SDK libraries included in the starter project:
 
-### Python installation
+- [Forge Python SDK](https://docs.arcblock.io/forge/sdks/python/latest/)
 
-It's recommended that you start a fresh python environment for this project to avoid dependencies conflict, you can run `make create-env` to create one with all required dependencies installed.
+## Runtime Requirements
 
-If you prefer to install python dependencies in your current environment, you can run `make install`. This will install required python dependencies.
-
-### Config env file
-
-Create a `.env` file , and set your own config. The `env_example` file is an example.
-
-Make sure you replace all ip addresses correctly. If you are not sure about your ip address, you can run `ifconfig en0` in terminal, and your ip address should be right after the `inet` keyword.
-
-### Declare app wallet
-
-This step reads app wallet information from `.env` and declare the wallet on chain
-
-```bash
-make declare
-```
+- Python >=3.x && <=3.6
+- Node.js v10+
+- Mongodb v3+
 
 ## Usage
 
-Start python server on 5000. If you ran `make create-env` before, run` source /usr/local/bin/virtualenvwrapper.sh;workon forge-env;` before you run below command:
+### Setup a chain (optional)
 
-```bash
-make run-server
+``` bash
+npm install -g @arcblock/forge-cli forge-react-starter
+forge install
+forge start
 ```
 
-Run client on port 3000
+### Create new project with forge-cli
 
-```bash
-make run-client
+``` bash
+forge project:create forge-python-starter
 ```
+
+### Just use this starter repo
+
+> **Note: You have to setup an `.env` file manually.**
+
+```terminal
+git clone https://github.com/ArcBlock/forge-dapp-starters.git
+cd forge-dapp-starters/packages/forge-react-starter
+yarn
+yarn start
+```
+
+## Configuration
+
+dApp configuration file is auto generated and stored in `.env`, example configure as:
+
+```text
+# server only
+MONGO_URI="mongodb://localhost/forge-react-starter"
+APP_TOKEN_SECRET="you_should_change_this"
+APP_TOKEN_TTL="1d"
+APP_SK="0x12433d2ffae0e304c04504c45c19d8b7d7825ef017c48811a784b35bf7ba26cfecf4ec97e4cf2d5a62a93bf16eb841b0faa1980c86a24cc2db6f218d410aee32"
+APP_PORT=8000
+
+# both server and client
+REACT_APP_CHAIN_ID="zinc-2019-05-17"
+REACT_APP_CHAIN_HOST="https://zinc.abtnetwork.io/api"
+REACT_APP_APP_ID="zNKdL4LTzmiMDenTBtCixngRqGBk6YtZLseM"
+REACT_APP_APP_NAME="Forge React Starter"
+REACT_APP_BASE_URL="http://10.113.10.82:8000"
+REACT_APP_API_PREFIX=""
+```
+
+> Caution: `.env` contains very sensitive info such as Application wallet secret key, PLEASE DO NOT COMMIT `.env` FILE
+
+## FAQ
+
+### What APIs are supported by `GraphQLClient`?
+
+Checkout the following screenshot or just run the starter and open browser console.
+
+![](./docs/api-list.png)
 
 ## LICENSE
 

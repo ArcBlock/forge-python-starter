@@ -8,10 +8,11 @@ from server.forge import forge
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('server-env')
 
-SERVER_HOST = os.getenv('SERVER_HOST')
+SERVER_HOST = os.getenv('REACT_APP_SERVER_HOST')
+SERVER_PORT = int(os.getenv('REACT_APP_SERVER_PORT'))
 CHAIN_HOST = os.getenv('REACT_APP_CHAIN_HOST')
-APP_PK = base64.b16decode(os.getenv('REACT_APP_APP_PK'))
-APP_SK = base64.b16decode(os.getenv('REACT_APP_APP_SK'))
+APP_PK = base64.b16decode(os.getenv('APP_PK'))
+APP_SK = base64.b16decode(os.getenv('APP_SK'))
 APP_ADDR = os.getenv('REACT_APP_APP_ID')
 
 INDEX_DB = os.path.join(forge.config.path, "index", "index.sqlite3")

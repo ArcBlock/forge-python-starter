@@ -1,6 +1,6 @@
 .tmp.mk
-node_modules
 .idea
-.DS_Store
-.next
 .env
+.DS_Store
+
+node_modules/
