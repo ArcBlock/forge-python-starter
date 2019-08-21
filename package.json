@@ -32,8 +32,14 @@
     "lodash": "^4.17.15",
     "shelljs": "^0.8.3"
   },
+  "scripts": {
+    "test": "echo \"no test specified\""
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "set-npm-auth-token-for-ci": "^2.0.13"
+  }
 }
