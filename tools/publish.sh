@@ -4,8 +4,8 @@ git config --local user.email "wangshijun2010@gmail.com"
 git remote remove origin
 git remote add origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
 git remote -v
-git pull origin feature-publish
-git checkout feature-publish
+git pull origin master
+git checkout master
 git branch -a
 
 DEBUG=* node tools/setup-ci.js

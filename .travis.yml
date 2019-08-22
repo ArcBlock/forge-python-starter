@@ -5,13 +5,13 @@ node_js:
 install: false
 branches:
   only:
-  - feature-publish
+  - master
 deploy:
   - provider: script
     skip_cleanup: true
     script: bash ./tools/publish.sh
     on:
-      branch: feature-publish
+      branch: master
       node_js: 10
 env:
   global:
