@@ -14,13 +14,8 @@
   "files": [
     "sources"
   ],
-  "homepage": "https://github.com/ArcBlock/forge-dapp-starters/tree/master/packages/forge-react-starter",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ArcBlock/forge-dapp-starters/tree/master/packages/forge-react-starter"
-  },
+  "homepage": "https://docs.arcblock.io/forge/sdks/python/latest/",
   "bugs": {
-    "url": "https://github.com/ArcBlock/forge-dapp-starters/issues",
     "email": "shijun@arcblock.io"
   },
   "dependencies": {

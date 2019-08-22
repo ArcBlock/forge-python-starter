@@ -1,8 +1,24 @@
 ![forge-python-starter](https://www.arcblock.io/.netlify/functions/badge?text=forge-python-starter)
 
-> Brings tons of thousands react libraries/components to dApps that run on [forge](https://www.arcblock.io/en/forge-sdk) powered blockchain.
+## Introduction
 
-![](./docs/starter-home.png)
+[![](https://img.shields.io/npm/v/forge-python-starter.svg?label=forge-python-starter&style=flat-square)](https://www.npmjs.com/package/forge-python-starter)
+[![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg?style=flat-square)](https://docs.arcblock.io/forge/sdks/python/latest/)
+[![Build Status](https://img.shields.io/travis/com/arcblock/forge-cli?style=flat-square)](https://travis-ci.com/arcblock/forge-python-starter)
+[![Gitter](https://img.shields.io/gitter/room/ArcBlock/community?style=flat-square&color=%234cb696)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+- [Introduction](#introduction)
+- [Runtime Requirements](#runtime-requirements)
+- [Usage](#usage)
+  * [Setup a chain (optional)](#setup-a-chain--optional-)
+  * [Create new project with forge-cli](#create-new-project-with-forge-cli)
+  * [Just use this starter repo](#just-use-this-starter-repo)
+- [Configuration](#configuration)
+- [FAQ](#faq)
+  * [What APIs are supported by `GraphQLClient`?](#what-apis-are-supported-by--graphqlclient--)
+- [LICENSE](#license)
+
+> Brings tons of thousands react libraries/components to dApps that run on [forge](https://www.arcblock.io/en/forge-sdk) powered blockchain.
 
 Python starter project that integrates [Forge SDK](https://docs.arcblock.io/forge/latest/), [Python SDK](https://docs.arcblock.io/forge/latest/sdk/python.html) with mainstream javascript application batteries:
 
@@ -28,7 +44,7 @@ Forge Python SDK libraries included in the starter project:
 ### Setup a chain (optional)
 
 ``` bash
-npm install -g @arcblock/forge-cli forge-react-starter
+npm install -g @arcblock/forge-cli
 forge install
 forge start
 ```
