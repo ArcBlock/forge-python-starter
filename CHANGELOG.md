@@ -1,3 +1,7 @@
+## 0.3.2 (August 22, 2019)
+
+- Add npm publish script to CI
+
 ## 0.3.1 (August 16, 2019)
 
 - Split build dependencies and starter dependencies

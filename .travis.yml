@@ -1,0 +1,18 @@
+sudo: false
+language: node_js
+node_js:
+- '10'
+install: false
+branches:
+  only:
+  - master
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash ./tools/publish.sh
+    on:
+      branch: master
+      node_js: 10
+env:
+  global:
+    secure: "exx9GO+xqlgQBXGbF6QDbzuTc2UtN3pj+fykYUcq38Ld59haEoh7z8B+FWPRJVcuvFCSjC+OXZlXqNIS8bMdQ/nWmzm9eJp0FnQcKzmC6GrAhXU42UhV8mQam49+y91zWss6W06I6N0EGL3A1gxbTFY1C5PMlua+A5qrYrOONysAeQGLSHGVkX8LtRkuiwI4VdBS+H3dLYWIjqkfkicBmMOQzqSLF0Ht3JgT92if/RUtv0RAnTTYn3/W5jv8pb/J9g1xJQu1oJ6tKQ1FSfVTuRTIqhvBw54t7OQR5igZbTQXlSbA230jaJah+ceiZVXHIcVzcQRWjIJK6BArhhDjm1XtUkNiESKRghvdQiXpv2iRDdhI265lHI/+maTUmS7+uz6pCcnkkWMLMW20WxDTrm6c9SN/keImyHfIlaVynsdTN8xcLXdvyA8dEaizYdGL0m9bMacGhEr9slbwPZkKEstd8URObNd/nbVZseHgpXxAU3C0p9B6vo3ulOd16W7zonbdzGeY4yTNeANBrvdLCxUVb+P/IZRx38c1UvmSx7oqoaY1N7uqQarMKrwaadnTavdzp1k6yR+e9tGJCpTfSBCR4Fse86Dq19BJGQyGGm8y4nPSu/eRgsQPOe73TnMFhitnp1gXh8H178ebjBGY1un+sVFVtTqhkL01RdYJEWo="

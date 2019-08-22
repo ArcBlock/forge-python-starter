@@ -1,6 +1,6 @@
 {
   "name": "forge-python-starter",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "starter.config.js",
   "author": "wangshijun <shijun@arcblock.io> https://github.com/wangshijun",
   "keywords": [
@@ -14,13 +14,8 @@
   "files": [
     "sources"
   ],
-  "homepage": "https://github.com/ArcBlock/forge-dapp-starters/tree/master/packages/forge-react-starter",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ArcBlock/forge-dapp-starters/tree/master/packages/forge-react-starter"
-  },
+  "homepage": "https://docs.arcblock.io/forge/sdks/python/latest/",
   "bugs": {
-    "url": "https://github.com/ArcBlock/forge-dapp-starters/issues",
     "email": "shijun@arcblock.io"
   },
   "dependencies": {
@@ -32,8 +27,14 @@
     "lodash": "^4.17.15",
     "shelljs": "^0.8.3"
   },
+  "scripts": {
+    "test": "echo \"no test specified\""
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@hutson/set-npm-auth-token-for-ci": "^4.0.3"
+  }
 }
