@@ -1,3 +1,7 @@
+## 0.4.0 (September 06, 2019)
+
+- add blocklet manifest
+
 ## 0.3.2 (August 22, 2019)
 
 - Add npm publish script to CI
