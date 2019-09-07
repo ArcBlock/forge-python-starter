@@ -1,3 +1,7 @@
+## 0.4.1 (September 08, 2019)
+
+- blocklet: add blocklet scripts
+
 ## 0.4.0 (September 06, 2019)
 
 - add blocklet manifest
