@@ -157,13 +157,13 @@ REACT_APP_BASE_URL="http://localhost:${appPort}"`;
 
 const run = async () => {
   const { envContent, proxy } = await getConfigs();
-  const sources = 'sources';
-  fs.writeFileSync(path.join(sources, '.env'), envContent);
+  const targetDir = process.env.TARGET_DIR;
+  fs.writeFileSync(path.join(targetDir, '.env'), envContent);
 
-  const packageJSONPath = path.join(sources, 'package.json');
+  const packageJSONPath = path.join(targetDir, 'package.json');
   const packageJSON = JSON.parse(fs.readFileSync(packageJSONPath).toString());
   packageJSON['proxy'] = proxy;
-  fs.writeFileSync(packageJSONPath, JSON.stringify(packageJSON));
+  fs.writeFileSync(packageJSONPath, JSON.stringify(packageJSON, null, 4));
 };
 
 run();
