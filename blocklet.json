@@ -21,7 +21,7 @@
     "install-dependencies": "yarn install"
   },
   "hooks": {
-    "configuration": "node scripts/index.js",
+    "configure": "node scripts/index.js",
     "post-copy": "git init && make create-env && yarn install",
     "on-complete": "node scripts/on-complete.js"
   }

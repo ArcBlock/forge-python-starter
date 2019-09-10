@@ -157,7 +157,7 @@ REACT_APP_BASE_URL="http://localhost:${appPort}"`;
 
 const run = async () => {
   const { envContent, proxy } = await getConfigs();
-  const targetDir = process.env.TARGET_DIR;
+  const targetDir = process.env.FORGE_BLOCKLET_TARGET_DIR;
   fs.writeFileSync(path.join(targetDir, '.env'), envContent);
 
   const packageJSONPath = path.join(targetDir, 'package.json');
