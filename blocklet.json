@@ -16,12 +16,12 @@
     "react",
     "javascript"
   ],
-  "sources": "sources",
-  "generate-scripts": {
-    "installDependencies": "yarn install",
-    "generate": "node scripts/index.js"
+  "templates": "templates",
+  "install-scripts": {
+    "install-dependencies": "yarn install"
   },
   "hooks": {
+    "configuration": "node scripts/index.js",
     "post-copy": "git init && make create-env && yarn install",
     "on-complete": "node scripts/on-complete.js"
   }
