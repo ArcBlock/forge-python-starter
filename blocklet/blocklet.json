@@ -1,7 +1,0 @@
-{
-  "description": "A dApp starter that integrates forge-python-sdk and create-react-app and works with ABT Wallet",
-  "logo": "logo.jpg",
-  "group": "starter",
-  "provider": "official",
-  "color": "primary"
-}
