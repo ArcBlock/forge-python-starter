@@ -1,3 +1,7 @@
+## 0.4.2 (September 11, 2019)
+
+- fix pack npm package bug, and remove starter.config.js
+
 ## 0.4.1 (September 08, 2019)
 
 - blocklet: add blocklet scripts
