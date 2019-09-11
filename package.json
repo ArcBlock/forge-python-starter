@@ -11,9 +11,6 @@
     "react",
     "javascript"
   ],
-  "files": [
-    "sources"
-  ],
   "homepage": "https://docs.arcblock.io/forge/sdks/python/latest/",
   "bugs": {
     "email": "shijun@arcblock.io"
