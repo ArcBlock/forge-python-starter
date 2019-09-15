@@ -52,7 +52,16 @@ forge start
 ### Create new project with forge-cli
 
 ``` bash
-forge project:create forge-python-starter
+forge blocklet:use forge-python-starter
+
+# prepare env
+make create-env && yarn install
+
+# start server
+make run-server
+
+# start front-end
+yarn start
 ```
 
 ### Just use this starter repo
@@ -60,9 +69,16 @@ forge project:create forge-python-starter
 > **Note: You have to setup an `.env` file manually.**
 
 ```terminal
-git clone https://github.com/ArcBlock/forge-dapp-starters.git
-cd forge-dapp-starters/packages/forge-react-starter
-yarn
+git clone https://github.com/ArcBlock/forge-python-starter.git
+cd forge-python-starter/templates
+
+# prepare env
+make create-env && yarn install
+
+# start server
+make run-server
+
+# start front-end
 yarn start
 ```
 
@@ -72,7 +88,7 @@ dApp configuration file is auto generated and stored in `.env`, example configur
 
 ```text
 # server only
-MONGO_URI="mongodb://localhost/forge-react-starter"
+MONGO_URI="mongodb://localhost/forge-python-starter"
 APP_TOKEN_SECRET="you_should_change_this"
 APP_TOKEN_TTL="1d"
 APP_SK="0x12433d2ffae0e304c04504c45c19d8b7d7825ef017c48811a784b35bf7ba26cfecf4ec97e4cf2d5a62a93bf16eb841b0faa1980c86a24cc2db6f218d410aee32"

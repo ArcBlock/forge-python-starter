@@ -1,83 +1,54 @@
-## Introduction
+## What is This For?
 
-> Brings tons of thousands react libraries/components to dApps that run on [forge](https://www.arcblock.io/en/forge-sdk) powered blockchain.
+Admit it or not, putting together dozens of libraries and frameworks and making them working together to build an application is hard and tedious, not to mention getting your application deployed for public access.
 
-Python starter project that integrates [Forge SDK](https://docs.arcblock.io/forge/latest/), [Python SDK](https://docs.arcblock.io/forge/latest/sdk/python.html) with mainstream javascript application batteries:
+On the other hand, having these libraries and frameworks makes our life easier by not reinventing the wheel, that's why [create-react-app](https://github.com/facebook/create-react-app) was born and get more and more popular.
 
-Forge JavaScript SDK libraries included in the starter project:
+You can get your own blockchain up and running within minutes with [forge-cli](https://github.com/ArcBlock/forge-cli), but how to connect your application with forge-powered chains through [forge-sdk](https://github.com/ArcBlock/forge-js)? How to get your application communication to ABT Wallet users?
 
-- [@arcblock/forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet) Utility function to create and use a forge compatible wallet, the wallet is also DID compatible.
-- [@arcblock/graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client) Client library to connect your app with forge powered blockchain node, all requests are sent over http/https, can be used in both Node.js and browser environment.
-- [@arcblock/mcrypto](https://www.npmjs.com/package/@arcblock/mcrypto) Forge mcrypto implementation for javascript, just a wrapper around existing javascript crypto libraries.
-- [@arcblock/react-forge](https://www.npmjs.com/package/@arcblock/react-forge) UI components that can be used in React Applications built on top of forge powered blockchain.
+`forge-python-starter` is here to help! **`forge-python-starter` is the go to solution if you want to build applications with Python and [react](https://reactjs.org) that runs on forge powered chains.**
 
-Forge Python SDK libraries included in the starter project:
+## What's Included?
 
-- [Forge Python SDK](https://docs.arcblock.io/forge/sdks/python/latest/)
+`forge-python-starter` is a typical full-stack javascript dApp template that have [forge-sdk](https://npmjs.org/package/@arcblock/forge-sdk) integrated, it consists of 2 core parts:
 
-## Runtime Requirements
+### Frontend Part
 
-- Python >=3.x && <=3.6
-- Node.js v10+
-- Mongodb v3+
+Built upon the application skeleton we got after running `create-react-app`, dApps bootstrapped with this starter have several widely used react libraries integrated to make page composing easier:
 
-## Usage
+- [styled-components](https://www.styled-components.com) as styling solution
+- [@material-ui](https://material-ui.com) as component library
+- [react-router-dom](https://reacttraining.com/react-router/) for client side routing
+- [@arcblock/forge-sdk](https://www.npmjs.com/package/@arcblock/forge-sdk) for read and write onchain data
 
-### Setup a chain (optional)
+### Backend part
 
-``` bash
-npm install -g @arcblock/forge-cli
-forge install
-forge start
-```
+Besides, to make the dApp works along with the [ABT Wallet](https://abtwallet.io), some APIs are required, a minimal API server built upon [Flask](https://palletsprojects.com/p/flask/) is also included.
 
-### Create new project with forge-cli
+## Use cases?
 
-``` bash
-forge project:create forge-python-starter
-```
+`forge-python-starter` can be start point for any forge powered dapp, you can built many blockchain powered apps, such as:
 
-### Just use this starter repo
+- Online store that sells digital assets and accept ABT as payments
+- Online community application that authentication users through ABT Wallet
+- Admin console for internal use that are protected by ABT Wallet
 
-> **Note: You have to setup an `.env` file manually.**
+## Requirements?
 
-```terminal
-git clone https://github.com/ArcBlock/forge-dapp-starters.git
-cd forge-dapp-starters/packages/forge-react-starter
-yarn
-yarn start
-```
+Here are the knowledge requirements to get you up to speed when using this starter blocklet:
 
-## Configuration
+- Basic Python coding experience
+- Basic react coding experience
+- Basic knowledge of mongodb
 
-dApp configuration file is auto generated and stored in `.env`, example configure as:
+And to get the starter blocklet up and running on first try, you should:
 
-```text
-# server only
-MONGO_URI="mongodb://localhost/forge-react-starter"
-APP_TOKEN_SECRET="you_should_change_this"
-APP_TOKEN_TTL="1d"
-APP_SK="0x12433d2ffae0e304c04504c45c19d8b7d7825ef017c48811a784b35bf7ba26cfecf4ec97e4cf2d5a62a93bf16eb841b0faa1980c86a24cc2db6f218d410aee32"
-APP_PORT=8000
+- A handy command line terminal
+- Install latest version of forge-cli: `npm install -g @arcblock/forge-cli`
+- Spin up a forge-powered chain with forge-cli
+- Have a running [mongodb](https://mongodb.org) instance that the dApp can connects to
 
-# both server and client
-REACT_APP_CHAIN_ID="zinc-2019-05-17"
-REACT_APP_CHAIN_HOST="https://zinc.abtnetwork.io/api"
-REACT_APP_APP_ID="zNKdL4LTzmiMDenTBtCixngRqGBk6YtZLseM"
-REACT_APP_APP_NAME="Forge React Starter"
-REACT_APP_BASE_URL="http://10.113.10.82:8000"
-REACT_APP_API_PREFIX=""
-```
-
-> Caution: `.env` contains very sensitive info such as Application wallet secret key, PLEASE DO NOT COMMIT `.env` FILE
-
-## FAQ
-
-### What APIs are supported by `GraphQLClient`?
-
-Checkout the following screenshot or just run the starter and open browser console.
-
-![](./docs/api-list.png)
+Besides, you need to have ABT Wallet installed to try out the application after bootstrapping.
 
 ## LICENSE
 
