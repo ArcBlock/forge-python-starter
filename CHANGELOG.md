@@ -1,3 +1,7 @@
+## 0.4.3 (September 15, 2019)
+
+- update docs and other fixes
+
 ## 0.4.2 (September 11, 2019)
 
 - fix pack npm package bug, and remove starter.config.js

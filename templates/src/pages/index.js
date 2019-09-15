@@ -101,7 +101,7 @@ export default function IndexPage() {
                 <br />
                 forge start
                 <br />
-                forge project:create forge-python-starter
+                forge blocklet:use forge-python-starter
               </pre>
             </code>
           </div>
