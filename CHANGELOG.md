@@ -1,3 +1,7 @@
+## 0.4.4 (September 16, 2019)
+
+- chore: update screenshots and fix chainId undefined bug
+
 ## 0.4.3 (September 15, 2019)
 
 - update docs and other fixes
