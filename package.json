@@ -11,7 +11,11 @@
     "react",
     "javascript"
   ],
-  "homepage": "https://docs.arcblock.io/forge/sdks/python/latest/",
+  "homepage": "https://github.com/arcblock/forge-python-starter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcblock/forge-python-starter"
+  },
   "bugs": {
     "email": "shijun@arcblock.io"
   },
