@@ -107,7 +107,7 @@ async function getConfigs() {
   const ipAddress = ip.address();
   const client = new GraphQLClient({ endpoint: chainHost });
   const {
-    info: { chainId },
+    info: { network: chainId },
   } = await client.getChainInfo();
 
   // Declare application on chain

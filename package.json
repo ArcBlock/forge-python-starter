@@ -1,6 +1,6 @@
 {
   "name": "forge-python-starter",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "main": "starter.config.js",
   "author": "wangshijun <shijun@arcblock.io> https://github.com/wangshijun",
   "keywords": [
@@ -11,7 +11,11 @@
     "react",
     "javascript"
   ],
-  "homepage": "https://docs.arcblock.io/forge/sdks/python/latest/",
+  "homepage": "https://github.com/arcblock/forge-python-starter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcblock/forge-python-starter"
+  },
   "bugs": {
     "email": "shijun@arcblock.io"
   },
