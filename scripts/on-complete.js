@@ -1,6 +1,10 @@
 const shell = require('shelljs');
 const chalk = require('chalk');
 
+process.on('unhandledRejection', err => {
+  throw err;
+});
+
 function onComplete() {
   const pm = shell.which('yarn') ? 'yarn' : 'npm';
   shell.echo('');

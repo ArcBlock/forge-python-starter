@@ -1,3 +1,7 @@
+## 0.4.5 (March 09, 2020)
+
+- Throw error when unhandledRejection event occurs in nodejs scripts
+
 ## 0.4.4 (September 16, 2019)
 
 - chore: update screenshots and fix chainId undefined bug

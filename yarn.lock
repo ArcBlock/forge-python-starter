@@ -142,10 +142,10 @@
     debug "^4.1.1"
     graphql "^14.1.1"
 
-"@hutson/set-npm-auth-token-for-ci@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@hutson/set-npm-auth-token-for-ci/-/set-npm-auth-token-for-ci-4.0.3.tgz#dbfd9535e367400232ce45ec7b306fcfea057108"
-  integrity sha512-tmZ5AOjckQqk+SUuF9OCBzvpVsiALyAH1WjSP0dlwQGkPpnwTIIP/ntg3O3DXHVa+Rbp6JqRxiWqYnVMHpWPtw==
+"@hutson/set-npm-auth-token-for-ci@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@hutson/set-npm-auth-token-for-ci/-/set-npm-auth-token-for-ci-5.0.0.tgz#64394942cb72cc324d73a1ad8206dc895c9d5a17"
+  integrity sha512-hp5vock32Wsb4U9PrdjVJu+U/Mk02qPJni6i6w+/1MlGkIjfioyJ5k+Yyp2olwjch3xv8iRWunuY3L9HnDaW+A==
   dependencies:
     debug "^4.0.0"
     local-or-home-npmrc "^1.1.0"

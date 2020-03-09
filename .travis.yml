@@ -2,17 +2,23 @@ sudo: false
 language: node_js
 node_js:
 - '10'
-install: false
+install: skip
 branches:
   only:
   - master
 deploy:
-  - provider: script
-    skip_cleanup: true
-    script: bash ./tools/publish.sh
-    on:
-      branch: master
-      node_js: 10
+- provider: script
+  skip_cleanup: true
+  script: bash ./tools/publish.sh
+  on:
+    branch: master
+    node_js: 10
+- provider: script
+  skip_cleanup: true
+  script: make release
+  on:
+    branch: master
 env:
   global:
-    secure: "exx9GO+xqlgQBXGbF6QDbzuTc2UtN3pj+fykYUcq38Ld59haEoh7z8B+FWPRJVcuvFCSjC+OXZlXqNIS8bMdQ/nWmzm9eJp0FnQcKzmC6GrAhXU42UhV8mQam49+y91zWss6W06I6N0EGL3A1gxbTFY1C5PMlua+A5qrYrOONysAeQGLSHGVkX8LtRkuiwI4VdBS+H3dLYWIjqkfkicBmMOQzqSLF0Ht3JgT92if/RUtv0RAnTTYn3/W5jv8pb/J9g1xJQu1oJ6tKQ1FSfVTuRTIqhvBw54t7OQR5igZbTQXlSbA230jaJah+ceiZVXHIcVzcQRWjIJK6BArhhDjm1XtUkNiESKRghvdQiXpv2iRDdhI265lHI/+maTUmS7+uz6pCcnkkWMLMW20WxDTrm6c9SN/keImyHfIlaVynsdTN8xcLXdvyA8dEaizYdGL0m9bMacGhEr9slbwPZkKEstd8URObNd/nbVZseHgpXxAU3C0p9B6vo3ulOd16W7zonbdzGeY4yTNeANBrvdLCxUVb+P/IZRx38c1UvmSx7oqoaY1N7uqQarMKrwaadnTavdzp1k6yR+e9tGJCpTfSBCR4Fse86Dq19BJGQyGGm8y4nPSu/eRgsQPOe73TnMFhitnp1gXh8H178ebjBGY1un+sVFVtTqhkL01RdYJEWo="
+  - secure: exx9GO+xqlgQBXGbF6QDbzuTc2UtN3pj+fykYUcq38Ld59haEoh7z8B+FWPRJVcuvFCSjC+OXZlXqNIS8bMdQ/nWmzm9eJp0FnQcKzmC6GrAhXU42UhV8mQam49+y91zWss6W06I6N0EGL3A1gxbTFY1C5PMlua+A5qrYrOONysAeQGLSHGVkX8LtRkuiwI4VdBS+H3dLYWIjqkfkicBmMOQzqSLF0Ht3JgT92if/RUtv0RAnTTYn3/W5jv8pb/J9g1xJQu1oJ6tKQ1FSfVTuRTIqhvBw54t7OQR5igZbTQXlSbA230jaJah+ceiZVXHIcVzcQRWjIJK6BArhhDjm1XtUkNiESKRghvdQiXpv2iRDdhI265lHI/+maTUmS7+uz6pCcnkkWMLMW20WxDTrm6c9SN/keImyHfIlaVynsdTN8xcLXdvyA8dEaizYdGL0m9bMacGhEr9slbwPZkKEstd8URObNd/nbVZseHgpXxAU3C0p9B6vo3ulOd16W7zonbdzGeY4yTNeANBrvdLCxUVb+P/IZRx38c1UvmSx7oqoaY1N7uqQarMKrwaadnTavdzp1k6yR+e9tGJCpTfSBCR4Fse86Dq19BJGQyGGm8y4nPSu/eRgsQPOe73TnMFhitnp1gXh8H178ebjBGY1un+sVFVtTqhkL01RdYJEWo=
+  - secure: OHpCZ+8BZx9GLGiJbLoCIQ56iyaLc8OCwwcZFHwMukJn78ExH5+xNst7OJRIiz934h5hS5zSayXHbklNvG350mpBtJV03vDFp3xZclvpdYDhCdShmizmsmcRcjl8yoegtGDuTk3Xo8uDBS2PccWQwWnZX4/CpKa8vn8FUze8qu21a+96KwREb2r2+FHAuovJrkpfe4qOd0LBmE66MOFf5Z3hRe25e+KtccbVob4WXtLFJhCcpgDgz9bqYVpqYHpae9dqxSlocs9MFLkAMKAXw8Y4XN3JV9qmYPLorwdC7aNN6Ka1UxuzW2mGuYDAvTsi09p/jiO08zX+iTqQVz+QHmt2z0AF/PE+HSPkJL9qSsIgpnFcCxaniVfWdL4t1ZcBiowj4hffYz+egm2LtHSlaLH9hE8+srFLMJsUyG7ZtfUCHNC0huF2L+/AYwi4NgVdh4BAeaASrTbcafzJ3pa4rvhVSYa2tVBPMUQNRmixxA8248ZNZVuPUvxdKHkYbvdzIpXYLf8SKpMAAO/tVff//CkYsh7ULpE9D5gamEWLm5ZZ2VmXLE08G690Ellh7MRVXnbmXYbdXGIZDusgkMy/WlEA8wRN7+WYBDBXSFgv/IdMOI77o3ov0ENFBCOsA8em8lT1PAPpev2FxhsNgtjlrGyI2wGpYE9fD3VFt6jzOBc=
