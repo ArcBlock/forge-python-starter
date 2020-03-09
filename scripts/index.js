@@ -10,6 +10,10 @@ const inquirerAutoComplete = require('inquirer-autocomplete-prompt');
 
 inquirer.registerPrompt('autocomplete', inquirerAutoComplete);
 
+process.on('unhandledRejection', err => {
+  throw err;
+});
+
 async function getConfigs() {
   const defaults = {
     appName: 'Forge Python Starter',
